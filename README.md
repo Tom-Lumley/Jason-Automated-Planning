@@ -52,7 +52,7 @@ chmod +x ff
 We are utilizing a customised version of PDDL4J as the planner of choice. RunPlanner.java contains some options for customisation, also see https://github.com/ramonpereira/PDDL4J-Planning
 
 
-### Debugging FF
+### Debugging FF (offline)
 
 Within `RunPlanner.java`, the planner will produce "output", just before "return plan" is executed do:
 
