@@ -79,6 +79,9 @@ If wishing to change the planner, focus your attention on the following files an
 - `"preProcessPredicates()"`, multiple files
 - Any other parsing or string manipulation, multiple files
 
+### Compatability
+Currently, the plan's context has to be quite basic however this can be extended by modifying the parsing operations throughout.
+
 ### Key Locations
 
 - Action Predicate Recovery = Recovery Operation in `Action.java`
