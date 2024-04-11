@@ -88,6 +88,7 @@ Currently, the plan's context has to be quite basic however this can be extended
 - No Applicable Plan Recovery = Recovery Operation `CustomAgent.java`
 - Direct Plannning Call = `Planning.java`
 - Execution of Planner = `RunPlanner.java`
+- Javadoc = `doc` & `index.html` or equivalent
 
 ### Suggested Installs
 
