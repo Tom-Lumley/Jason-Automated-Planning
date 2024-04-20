@@ -55,9 +55,13 @@ public class RunPlanner {
                 plan = extractSteps(output);
                 //System.out.println(plan);
                 return plan;
-            } catch (IOException | InterruptedException e) {e.printStackTrace();}
+            } catch (IOException | InterruptedException e) {
+                System.out.println("Error occured in RunPlanner.Run");
+                e.printStackTrace();
+            }
             return null;
         }
+        //Calling PDDL4J
         if (choiceOfPlanner == 2) {
             String args[] = new String[]{"-o", "domain.pddl", "-f", agName+"problem.pddl", "-u", "7"};
             
@@ -118,8 +122,10 @@ public class RunPlanner {
             plan.add(actionString); 
         } catch (Exception e) {
             // Print stack trace if an exception occurs
+            System.out.println("Error occured in RunPlanner.runPlannerSafely");
             e.printStackTrace();
         }
         return plan;
     }
 }
+
