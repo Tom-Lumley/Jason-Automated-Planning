@@ -180,3 +180,4 @@ public class CustomAgent extends Agent {
         return formattedPredicates;
     }
 }
+
