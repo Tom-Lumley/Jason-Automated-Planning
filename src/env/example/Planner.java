@@ -60,7 +60,7 @@ public class Planner extends DefaultInternalAction {
             }
 
             // Log recovery and planner information
-            recoveryLogger.info(agName+" --> Direct Planning Call --> Running Action --> "+plan.get(0).toString());
+            recoveryLogger.info(agName+" --> Direct Planning Call --> Running Action --> "+plan.toString());
 
             for (String act : plan) {
                 success = action.startAction(ag, act.toLowerCase()); 
@@ -79,6 +79,7 @@ public class Planner extends DefaultInternalAction {
                     System.out.println("To debug: Go to RunPlanner.java and print the output.");
                     return false;
                 }   
+                recoveryLogger.info(agName+" --> Direct Planning Call --> Running Action --> "+plan.get(0).toString());
 
                 // Execute the actions returned by the planner
                 success = action.startAction(ag, plan.get(0).toLowerCase());
