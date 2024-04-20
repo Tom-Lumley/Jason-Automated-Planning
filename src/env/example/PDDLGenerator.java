@@ -40,6 +40,7 @@ public class PDDLGenerator {
             writer.close();
 
         } catch (IOException e) {
+            System.out.println("Error occured generating problem.pddl");
             e.printStackTrace();
         }
     }
@@ -53,8 +54,13 @@ public class PDDLGenerator {
      * @throws IOException If an I/O error occurs.
      */
     private static void writePDDLHeader(FileWriter writer, String problemName, String domainName) throws IOException {
-        writer.write("(define (problem " + problemName + ")\n");
-        writer.write("  (:domain " + domainName + ")\n");
+        try {
+            writer.write("(define (problem " + problemName + ")\n");
+            writer.write("  (:domain " + domainName + ")\n");
+        } catch (IOException e) {
+            System.out.println("Error in writePDDLHeader");
+            e.printStackTrace();
+        }
     }
 
 
@@ -67,18 +73,23 @@ public class PDDLGenerator {
      * @throws IOException If an I/O error occurs.
      */
     private static void writePDDLInitialState(FileWriter writer, String[] initialState, List<String> goalState) throws IOException {
-        writer.write("  (:init\n");
-        if(initialState.length >= 1) {
-            for (String initialStateFact : initialState) {
-                writer.write("    (" + initialStateFact + ")\n");
+        try {
+            writer.write("  (:init\n");
+            if(initialState.length >= 1) {
+                for (String initialStateFact : initialState) {
+                    writer.write("    (" + initialStateFact + ")\n");
+                }
+            } else {
+                for (String goalStateFact :goalState) {
+                    writer.write("    (not (" + goalStateFact + "))\n");
+                }       
             }
-        } else {
-            for (String goalStateFact :goalState) {
-                writer.write("    (not (" + goalStateFact + "))\n");
-            }       
+            writer.write("    (" + "dummyPredicate" + ")\n");   
+            writer.write("  )\n");
+        } catch (IOException e) {
+            System.out.println("Error in writePDDLInitialState");
+            e.printStackTrace();
         }
-        writer.write("    (" + "dummyPredicate" + ")\n");   
-        writer.write("  )\n");
     }
 
     /**
@@ -89,15 +100,20 @@ public class PDDLGenerator {
      * @throws IOException If an I/O error occurs.
      */
     private static void writePDDLGoalState(FileWriter writer, List<String> predicates) throws IOException {
-        writer.write("  (:goal\n");
-        writer.write("    (and\n");
-
-        for (String predicate : predicates) {
-            writer.write("      (" + predicate + ")\n");
+        try {
+            writer.write("  (:goal\n");
+            writer.write("    (and\n");
+    
+            for (String predicate : predicates) {
+                writer.write("      (" + predicate + ")\n");
+            }
+    
+            writer.write("    )\n");
+            writer.write("  )\n");
+        } catch (IOException e) {
+            System.out.println("Error in writePDDLGoalState");
+            e.printStackTrace();
         }
-
-        writer.write("    )\n");
-        writer.write("  )\n");
     }
 
     /**
@@ -107,7 +123,12 @@ public class PDDLGenerator {
      * @throws IOException If an I/O error occurs.
      */
     private static void writePDDLFooter(FileWriter writer) throws IOException {
-        writer.write(")\n");
+        try {
+            writer.write(")\n");
+        } catch (IOException e) {
+            System.out.println("Error in writePDDLFooter");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -137,3 +158,4 @@ public class PDDLGenerator {
         return formattedPredicates;
     }
 }
+
